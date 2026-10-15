@@ -1,0 +1,4 @@
+# Grants the kbdlight group write access to the ASUS keyboard RGB and brightness sysfs attributes.
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="asus::kbd_backlight", \
+  RUN+="/usr/bin/chgrp kbdlight /sys%p/kbd_rgb_mode /sys%p/brightness", \
+  RUN+="/usr/bin/chmod g+w /sys%p/kbd_rgb_mode /sys%p/brightness"
