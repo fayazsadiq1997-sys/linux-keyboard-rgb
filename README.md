@@ -44,7 +44,7 @@ Effects can behave differently between models because each one's firmware handle
 
 ## Requirements
 
-- Linux 5.19 or newer (the version where `kbd_rgb_mode` was added to `asus-wmi`)
+- Linux 5.19 or newer
 - Python 3
 - GTK 4.12 or newer, and libadwaita 1.4 or newer
 - PyGObject
@@ -88,32 +88,17 @@ cd linux-keyboard-rgb && ./install.sh
 
 Run the installer as your normal user, not with `sudo`. It asks for your password only for the system-wide steps.
 
-The installer does the following:
-
-| What | Where |
-|---|---|
-| Copies the app | `~/.local/bin/linux-keyboard-rgb` |
-| Adds a launcher | `~/.local/share/applications/linux-keyboard-rgb.desktop` |
-| Adds the icon | `~/.local/share/icons/hicolor/scalable/apps/linux-keyboard-rgb.svg` |
-| Creates the `kbdlight` group and adds you to it | system |
-| Installs a udev rule that lets the `kbdlight` group write to the keyboard LED files | `/etc/udev/rules.d/99-linux-keyboard-rgb.rules` |
-
 ### 3. Reboot
 
 Reboot so the new group membership takes effect. Logging out may not be enough.
 
 ## Usage
 
-Open **Keyboard RGB** from your app launcher, or run `linux-keyboard-rgb` from a terminal (needs `~/.local/bin` on your `PATH`).
+Open **Keyboard RGB** from your app launcher, or run `linux-keyboard-rgb` from a terminal.
 
-- **Colour**: click a preset swatch, drag in the square and on the hue bar, or type a hex code such as `#ff6000`. Colour is disabled when the effect is Colour cycle.
 - **Effect**: choose Static, Breathing, Colour cycle or Strobe.
-- **Speed**: applies to every effect except Static.
-- **Brightness**: from 0 (off) to the keyboard's maximum.
 
 Changes show on the keyboard as you make them. Five seconds after your last change, or when you close the window, the settings are saved to the keyboard firmware.
-
-Brightness is set through a separate kernel file and isn't stored in firmware. Your desktop or `systemd-backlight` may restore it at boot instead.
 
 ## How it works
 
