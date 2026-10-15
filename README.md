@@ -96,7 +96,10 @@ Reboot so the new group membership takes effect. Logging out may not be enough.
 
 Open **Keyboard RGB** from your app launcher, or run `linux-keyboard-rgb` from a terminal.
 
+- **Colour**
 - **Effect**: choose Static, Breathing, Colour cycle or Strobe.
+- **Speed**
+- **Brightness**
 
 Changes show on the keyboard as you make them. Five seconds after your last change, or when you close the window, the settings are saved to the keyboard firmware.
 
