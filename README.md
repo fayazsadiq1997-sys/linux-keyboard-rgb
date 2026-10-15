@@ -98,7 +98,7 @@ Open **Keyboard RGB** from your app launcher, or run `linux-keyboard-rgb` from a
 
 - **Colour**
 - **Effect**: choose Static, Breathing, Colour cycle or Strobe.
-- **Speed**
+- **Speed**: not used by Static or Strobe (TUF firmware strobes at a fixed rate).
 - **Brightness**
 
 Changes show on the keyboard as you make them. Five seconds after your last change, or when you close the window, the settings are saved to the keyboard firmware.

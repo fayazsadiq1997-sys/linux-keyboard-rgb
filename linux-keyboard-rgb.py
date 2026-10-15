@@ -25,7 +25,8 @@ SETTINGS_FILE = Path(GLib.get_user_config_dir()) / "linux-keyboard-rgb" / "setti
 
 MODE_STATIC = 0
 MODE_CYCLE = 2
-# 10 is the driver's catch-all mode (it maps 9 and >=12 to it); on TUF keyboards it strobes.
+# 10 is the driver's catch-all mode (it maps 9 and >=12 to it); on TUF keyboards it strobes
+# at a fixed rate and ignores the speed field. Mode 3 is solid colour on TUF, not strobe.
 MODE_STROBE = 10
 # (label, asus-wmi mode number), in dropdown order.
 MODES = [("Static", MODE_STATIC), ("Breathing", 1), ("Colour cycle", MODE_CYCLE), ("Strobe", MODE_STROBE)]
@@ -357,7 +358,7 @@ class LinuxKeyboardRgbWindow(Adw.ApplicationWindow):
     def _update_sensitivity(self):
         """Grey out controls the current effect ignores."""
         mode = self.settings["mode"]
-        self.speed_row.set_sensitive(mode != MODE_STATIC)
+        self.speed_row.set_sensitive(mode not in (MODE_STATIC, MODE_STROBE))
         self.colour_group.set_sensitive(mode != MODE_CYCLE)
 
     def _show_error(self, err):
