@@ -145,23 +145,15 @@ Run `linux-keyboard-rgb` in a terminal to see the error. A `ValueError: Namespac
 
 ## Uninstall
 
-```bash
-rm ~/.local/bin/linux-keyboard-rgb ~/.local/share/applications/linux-keyboard-rgb.desktop ~/.local/share/icons/hicolor/scalable/apps/linux-keyboard-rgb.svg
-```
+From the cloned repository, run:
 
 ```bash
-rm -r ~/.config/linux-keyboard-rgb
+./uninstall.sh
 ```
 
-```bash
-sudo rm /etc/udev/rules.d/99-linux-keyboard-rgb.rules && sudo udevadm control --reload
-```
+As with the installer, run it as your normal user. It removes everything `install.sh` added, plus your saved settings in `~/.config/linux-keyboard-rgb`. It also deletes the `kbdlight` group.
 
-```bash
-sudo gpasswd -d "$USER" kbdlight && sudo groupdel kbdlight
-```
-
-The last colour saved to firmware stays on the keyboard after you uninstall.
+The last colour saved to firmware stays on the keyboard after you uninstall. The LED files keep their changed permissions until you reboot.
 
 ## License
 
