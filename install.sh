@@ -25,7 +25,7 @@ Comment=Change keyboard backlight colour and effect
 Exec=$bin_dir/linux-keyboard-rgb
 Icon=linux-keyboard-rgb
 # Lets GNOME match the running window (Wayland app_id) to this launcher and its icon.
-StartupWMClass=io.github.fayaz.LinuxKeyboardRgb
+StartupWMClass=io.github.fayazsadiq1997_sys.LinuxKeyboardRgb
 Categories=Settings;HardwareSettings;
 EOF
 

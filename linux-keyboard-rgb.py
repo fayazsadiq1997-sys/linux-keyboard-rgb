@@ -15,7 +15,7 @@ gi.require_version("Gsk", "4.0")
 gi.require_version("Graphene", "1.0")
 from gi.repository import Adw, Gdk, GLib, Graphene, Gsk, Gtk  # noqa: E402
 
-APP_ID = "io.github.fayaz.LinuxKeyboardRgb"
+APP_ID = "io.github.fayazsadiq1997_sys.LinuxKeyboardRgb"
 ICON_NAME = "linux-keyboard-rgb"  # installed into the hicolor theme by install.sh
 LED_DIR = Path("/sys/class/leds/asus::kbd_backlight")
 MODE_FILE = LED_DIR / "kbd_rgb_mode"
