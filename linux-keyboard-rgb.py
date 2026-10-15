@@ -15,13 +15,13 @@ gi.require_version("Gsk", "4.0")
 gi.require_version("Graphene", "1.0")
 from gi.repository import Adw, Gdk, GLib, Graphene, Gsk, Gtk  # noqa: E402
 
-APP_ID = "io.github.fayaz.AsusTufRgb"
-ICON_NAME = "asus-tuf-rgb"  # installed into the hicolor theme by install.sh
+APP_ID = "io.github.fayaz.LinuxKeyboardRgb"
+ICON_NAME = "linux-keyboard-rgb"  # installed into the hicolor theme by install.sh
 LED_DIR = Path("/sys/class/leds/asus::kbd_backlight")
 MODE_FILE = LED_DIR / "kbd_rgb_mode"
 BRIGHTNESS_FILE = LED_DIR / "brightness"
 MAX_BRIGHTNESS_FILE = LED_DIR / "max_brightness"
-SETTINGS_FILE = Path(GLib.get_user_config_dir()) / "asus-tuf-rgb" / "settings.json"
+SETTINGS_FILE = Path(GLib.get_user_config_dir()) / "linux-keyboard-rgb" / "settings.json"
 
 MODE_STATIC = 0
 MODE_CYCLE = 2
@@ -80,7 +80,7 @@ def load_settings():
     except FileNotFoundError:
         return settings
     except (OSError, ValueError) as err:
-        print(f"asus-tuf-rgb: ignoring unreadable settings file: {err}", file=sys.stderr)
+        print(f"linux-keyboard-rgb: ignoring unreadable settings file: {err}", file=sys.stderr)
         return settings
 
     if not isinstance(stored, dict):
@@ -103,7 +103,7 @@ def save_settings(settings):
         tmp.write_text(json.dumps(settings, indent=2))
         os.replace(tmp, SETTINGS_FILE)
     except OSError as err:
-        print(f"asus-tuf-rgb: could not save settings: {err}", file=sys.stderr)
+        print(f"linux-keyboard-rgb: could not save settings: {err}", file=sys.stderr)
 
 
 def write_rgb_mode(settings, cmd):
@@ -245,7 +245,7 @@ class SvSquare(Gtk.Widget):
         append_circle(snapshot, x, y, 7, make_rgba(*colorsys.hsv_to_rgb(hue, sat, val)))
 
 
-class AsusTufRgbWindow(Adw.ApplicationWindow):
+class LinuxKeyboardRgbWindow(Adw.ApplicationWindow):
     """Main window: inline colour picker, effect, speed and brightness.
 
     Every change is written to the keyboard as a preview (throttled to
@@ -503,7 +503,7 @@ class AsusTufRgbWindow(Adw.ApplicationWindow):
         self._show_error(None)
 
 
-class AsusTufRgbApp(Adw.Application):
+class LinuxKeyboardRgbApp(Adw.Application):
     """Single-instance application wrapper; re-activating focuses the existing window."""
 
     def __init__(self):
@@ -512,9 +512,9 @@ class AsusTufRgbApp(Adw.Application):
     def do_activate(self):
         # GNOME takes the icon from the .desktop file; other desktops use this.
         Gtk.Window.set_default_icon_name(ICON_NAME)
-        window = self.get_active_window() or AsusTufRgbWindow(self)
+        window = self.get_active_window() or LinuxKeyboardRgbWindow(self)
         window.present()
 
 
 if __name__ == "__main__":
-    sys.exit(AsusTufRgbApp().run(sys.argv))
+    sys.exit(LinuxKeyboardRgbApp().run(sys.argv))
